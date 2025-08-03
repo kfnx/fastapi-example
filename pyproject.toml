@@ -17,4 +17,9 @@ dependencies = [
 line-length = 88
 
 [tool.ruff.lint]
-select = ["I"]  # Enable isort rules
+select = [
+    "E",
+    "W",
+    "F",
+    "I"   # Enable isort rules
+]
