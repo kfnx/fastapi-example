@@ -1,11 +1,12 @@
-import os
 from typing import Optional
 
 from dotenv import load_dotenv
 from sqlmodel import Field, Session, SQLModel, create_engine
 
+from app.config import settings
+
 load_dotenv(override=True)
-engine = create_engine(os.environ.get("DATABASE_URL", "sqlite:///dev.db"))
+engine = create_engine(settings.database_url)
 
 
 def get_db_session():
