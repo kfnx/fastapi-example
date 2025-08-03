@@ -6,7 +6,7 @@ from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
 from alembic import context
-from app.database import Note #noqa
+from app.database import Note  # noqa
 
 load_dotenv(override=True)
 
@@ -19,7 +19,9 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option("sqlalchemy.url", os.environ.get("DATABASE_URL", "sqlite:///dev.db"))
+config.set_main_option(
+    "sqlalchemy.url", os.environ.get("DATABASE_URL", "sqlite:///dev.db")
+)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
@@ -71,9 +73,7 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()
